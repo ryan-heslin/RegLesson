@@ -1,0 +1,50 @@
+---
+title: "RegLesson"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{RegLesson}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = ""
+)
+```
+
+RegLesson originated from my preparations the summer before taking a linear 
+regression course. I decided to implement linear regression from the ground up,
+using only base R. Instead of relying on `lm`, I built a `LinRegProblem` class to 
+store a linear model and associated data. I extended this with functions designed to make 
+it easier to solve textbook problems. I have no illusions that my work is better than 
+R's native linear modeling functions, but implementing it was a useful exercise.
+
+You can install the package using:
+
+
+```{r, eval = FALSE}
+devtools::install_github("ryan-heslin/RegLesson")
+```
+You can create `LinRegProblem` objects like so:
+
+```{r setup}
+library(RegLesson)
+
+X <- LinRegProblem(mtcars[, -1], mtcars$mpg)
+```
+
+This represents a regression of `mpg` on all other `mtcars` variables.
+
+the `do_problems` function evaluates expressions in an environment and prints the results. Required, omitted arguments are replaced with their values in the environment. Now we can check whether the model passes the overall $F$ test and get Working-Hoteling confidence bands for the observations.
+
+```{r}
+do_problems(
+  X,
+  regression_relation(),
+  Working_Hoteling(X_h = cbind(1, as.matrix(mtcars[, -1])))
+)
+```
+
+This package contains functions for several diagnostic tests as well. Have fun!
