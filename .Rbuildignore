@@ -1,0 +1,6 @@
+^data\.R$
+^scrape\.R$
+^README\.Rmd$
+^LICENSE\.md$
+^tests$
+^\.git$
