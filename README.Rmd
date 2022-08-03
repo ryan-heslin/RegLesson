@@ -6,10 +6,10 @@ output: github_document
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
-  collapse = TRUE,
-  comment = "#>",
-  fig.path = "man/figures/README-",
-  out.width = "100%"
+    collapse = TRUE,
+    comment = "#>",
+    fig.path = "man/figures/README-",
+    out.width = "100%"
 )
 ```
 
@@ -18,12 +18,15 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-RegLesson originated from my preparations the summer before taking a linear 
-regression course. I decided to implement linear regression from the ground up,
-using only base R. Instead of relying on `lm`, I built a `LinRegProblem` class to 
-store a linear model and associated data. I extended this with functions designed to make 
-it easier to solve textbook problems. I have no illusions that my work is better than 
-R's native linear modeling functions, but implementing it was a useful exercise.
+The summer before the second year of my master's degree, I identified two weaknesses in
+my skills:
+I didn't know enough about linear regression, and I had grown a bit too dependent on
+`tidyverse` over base R. The solution was obvious: write a package implementing
+linear regression from the ground up,
+using only base R. Instead of relying on `lm`, I built a `LinRegProblem` class to
+store a linear model and associated data. I extended this with functions designed to make
+it easier to solve textbook problems. I don't need a profiler to know this approach is
+a lot less efficient than R's built-in functions, but implementing it was a useful exercise.
 
 You can create `LinRegProblem` objects like so:
 
@@ -39,9 +42,9 @@ the `do_problems` function evaluates expressions in an environment and prints th
 
 ```{r}
 do_problems(
-  X,
-  regression_relation(),
-  Working_Hoteling(X_h = cbind(1, as.matrix(mtcars[, -1])))
+    X,
+    regression_relation(),
+    Working_Hoteling(X_h = cbind(1, as.matrix(mtcars[, -1])))
 )
 ```
 
@@ -55,4 +58,3 @@ You can install the development version of RegLesson from [GitHub](https://githu
 # install.packages("devtools")
 devtools::install_github("ryan-heslin/RegLesson")
 ```
-
